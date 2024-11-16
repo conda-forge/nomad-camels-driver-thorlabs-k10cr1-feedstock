@@ -1,18 +1,18 @@
 {% set name = "nomad-camels-driver-thorlabs-K10CR1" %}
-{% set version = "0.1.0" %}
+{% set version = "0.1.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nomad_camels_driver_thorlabs_K10CR1-{{ version }}.tar.gz
-  sha256: 26736bfadee02844de7db570c0a5d7457d59f5c97184b8b02762d864a2bd9539
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name.replace('-', '_').lower() }}/{{ name.replace('-', '_').lower() }}-{{ version }}.tar.gz
+  sha256: 56cc6fff7e82ce2a17107c7de3b519979838ef4b3c720ce59fc1a49b61914fb6
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
