@@ -1,3 +1,4 @@
+{% set python_min = '3.9.6' %}
 {% set name = "nomad-camels-driver-thorlabs-K10CR1" %}
 {% set version = "0.1.1" %}
 
@@ -6,25 +7,27 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name.replace('-', '_').lower() }}/{{ name.replace('-', '_').lower() }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name.replace('-', '_').lower() }}/{{ name.replace('-', '_').lower() }}-{{ version }}.tar.gz
   sha256: 56cc6fff7e82ce2a17107c7de3b519979838ef4b3c720ce59fc1a49b61914fb6
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.9.6
+    - python {{ python_min }}
     - setuptools >=61.0
     - pip
   run:
-    - python >=3.9.6
+    - python >={{ python_min }}
     - pylablib
     - nomad-camels
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - nomad_camels_driver_thorlabs_K10CR1
 
